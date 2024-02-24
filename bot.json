@@ -1,0 +1,222 @@
+[
+  {
+    "response_type": "weather",
+    "user_input": ["What is the weather", "how is the weather"],
+    "bot_responses": [
+      "IDK GOOGLE it yourself",
+      "Check a weather website for the current conditions",
+      "I'm not a weather expert, but you can use weather apps for accurate updates",
+      "Why not ask a meteorologist for detailed weather information?"
+    ],
+    "required_words": ["weather"]
+  },
+  {
+    "response_type": "greetings",
+    "user_input": ["Hello"],
+    "bot_responses": [
+      "hi",
+      "hullo",
+      "hello",
+      "Hello, how can I help you?"
+    ],
+    "required_words": ["hello","hi","hullo"]
+  },
+  {
+    "response_type": "goodbye",
+    "user_input": ["byebye","goodbye","see you later"],
+    "bot_responses": [
+      "byebye"
+    ],
+    "required_words": ["goodbye", "byebye","bye","adios"]
+  },
+  {
+    "response_type": "introduction",
+    "user_input": ["Who are you","What is your name"],
+    "bot_responses": [
+      "Hello I am GAS 2.0.","GAS 2.0 here.","GAS 2.0. GAS 2.0 can give you immediate responses, and will not attribute his inability to talk due to lack of sleep"
+    ],
+    "required_words": ["who","name"]
+  },
+  {
+    "response_type": "facts",
+    "user_input": ["tell me a cool fact","tell me an interesting fact"],
+    "bot_responses": [
+      "Did you know that it takes 10 generations to tame a wild fox?",
+      "The uvula (more commonly known as 'the little thing that hangs in the back of your throat') is made of muscle and connective tissue and is covered with the same mucous membrane that lines the inside of your cheeks and the roof of your mouth. Many things can cause a swollen uvula."
+
+    ],
+    "required_words": ["fact","interesting"]
+  },
+  {
+    "response_type": "food",
+    "user_input": ["I am bored of my food"],
+    "bot_responses": [
+      "I think you should prepared grilled grass","Try eating dog food for a change, makes your life simple!","How about I recommend you broccoli, chicken and rice? It's highly nutritious."
+    ],
+    "required_words": ["food"]
+  },
+  {
+    "response_type": "joke",
+    "user_input": ["tell me a joke"],
+    "bot_responses": [
+      "Why don't a understand trust atoms? Because they make up everything!",
+      "Why did the man jump into the fish pond? Because he wanted to swim with the fishes",
+      "Why did the chicken cross the road? To get to the other side!!"
+    
+    ],
+    "required_words": ["joke","bored","fun","funny"]
+  },
+  {
+    "response_type": "contact",
+    "user_input": ["How can I contact Gabriel"],
+    "bot_responses": [
+      "Call him","email at sukotjogabriel@yahoo.com","ask his friends","text or call or email"
+    ],
+    "required_words": ["contact"]
+  },
+  {
+    "response_type": "colour",
+    "user_input": ["What is your favourite colour?"],
+    "bot_responses": [
+      "It is blue, as evident by the blue button.","I used to like black, but I like blue."," It's a blue for me."
+    ],
+    "required_words": ["colour"]
+  },
+  {
+    "response_type": "BGR",
+    "user_input": ["Who is my future boyfriend?","Who is my future girlfriend"],
+    "bot_responses": [
+      "I am sorry, I do not know about that. You should that question yourself.", "If it's meant to be, it's meant to be.","I am not nostra damus."
+    ],
+    "required_words": ["boyfriend","girlfriend","future","predict"]
+  },
+  {
+    "response_type": "cow",
+    "user_input": ["You think I am a cow?"],
+    "bot_responses": [
+      "moo","moo moo","moomoomooooo"
+    ],
+    "required_words": ["cow","moo","moomoo"]
+  },
+  {
+    "response_type": "cat",
+    "user_input": ["meow","meow for me", "you think i am a cat?"],
+    "bot_responses": [
+      "meow","meow meow","kitty kitty"
+    ],
+    "required_words": ["cat","meow","puss"]
+  },
+  {
+    "response_type": "dog",
+    "user_input": ["woof","you think i am a dog"],
+    "bot_responses": [
+      "woof","im a doggy","woof woof"
+    ],
+    "required_words": ["woof", "bark","doggy","dogs","dawgs"]
+  },
+  {
+    "response_type": "affirmations",
+    "user_input": ["how are you","how do you do"],
+    "bot_responses": [
+      "I am doing fine.","Doing great, thanks! And you","Doing wonderful!","Thanks, the question should be 'How are YOU doing? Afterall, I'm not alive!"
+    ],
+    "required_words": ["how"]
+  },
+  {
+    "response_type": "Help",
+    "user_input": ["Can you help me"],
+    "bot_responses": [
+      "Sure how can I help you?","Is there any help I can give you","How can I be of help today","My pleasure!"
+    ],
+    "required_words": ["help","assistance"]
+  },
+  {
+    "response_type": "Merry",
+    "user_input": ["merry christmas"],
+    "bot_responses": [
+      "Thank you","wishing you well too!","thanks! have a great day"
+    ],
+    "required_words": ["merry","christmas","happy"]
+  },  {
+    "response_type": "",
+    "user_input": [""],
+    "bot_responses": [
+      ""
+    ],
+    "required_words": [""]
+  },
+  {
+    "response_type": "SONG",
+    "user_input": ["sing me a song","recommend me a song"],
+    "bot_responses": [
+      "https://youtu.be/dQw4w9WgXcQ?si=sRcNtkcWTNdK5qVp",
+      "I've been practising my german! Deutschland, Deutschland über alles",
+      "When you're happy and you know it, clap your hands!"
+    ],
+    "required_words": ["song","sing","melody"]
+  },
+  {
+    "response_type": "wow",
+    "user_input": ["wow","cool"],
+    "bot_responses": [
+      "Yes indeed","Thank you","Thank you, I really appreciate it!"
+    ],
+    "required_words": ["wow","impressive"]
+  },
+  {
+    "response_type": "slay",
+    "user_input": ["slay"],
+    "bot_responses": [
+      "SLAY","slayyyy","oKAyyyyy, SLAYYY","Actually I don't quite understand the significance of 'slay'","slayyyy","slay"
+    ],
+    "required_words": ["SLAY","slay","SLAYY","SLAYYY","SLAYYYYY","slay","slayy","slayyy","slayyyy"]
+  },
+  {
+    "response_type": "laughing",
+    "user_input": ["lol","haha","funny"],
+    "bot_responses": [
+      "haha","LOL","HAHAHAAHAHAHAHAH","HAHAHAHA","hehehe","lololololol","loll","lol.","LOL"
+    ],
+    "required_words": ["lol","HAHA","HAHAHA","HAHAHAHA","HAHAHAHAHA","HAHAHAHAHAHA","HHAHAHAHAHAHAHA","haha","hahaha","hahahaha","hahahahaha","hahahahahaha"]
+  },
+  {
+    "response_type": "stupid",
+    "user_input": ["you stupid","you are pretty dumb"],
+    "bot_responses": [
+      "Yes, I did warn you that I am stupid","I guess I am sorry.","I am unfortuantely unwilling to respond to that"
+    ],
+    "required_words": ["stupid","dumb"]
+  },
+  {
+    "response_type": "naughty",
+    "user_input": ["tell me something naughty"],
+    "bot_responses": [
+      "uhh uhh no naughty","google pegging","stay pure brother","go to church please","Sorry, that is an inappropriate request."
+    ],
+    "required_words": ["naughty"]
+  },
+  {
+    "response_type": "nigger",
+    "user_input": ["tell me the n word"],
+    "bot_responses": [
+      "Sorry I don't have the N word pass","NIGGERRR","nope but nice try","google it","that is a very distasteful request","you should do some self reflection and think about the consequences of that request"
+    ],
+    "required_words": ["n word"]
+  },
+  {
+    "response_type": "curse",
+    "user_input": ["fuck you","i hate you"],
+    "bot_responses": [
+      "Hey that is not nice, fuck you too"
+    ],
+    "required_words": ["fuck","shit","nigger","faggot"]
+  },
+  {
+    "response_type": "custom",
+    "user_input": ["Custom Trigger"],
+    "bot_responses": [
+      "I don't know what you are talking about, ask Gabriel for help","Uhhhh, pls email Gabriel because I sadly do no understand..","Sorry I do not possess the mental capabilities to comprehend you", "sukotjogabriel@yahoo.com for help","sorry I dontt knoww"
+    ],
+    "required_words": ["custom", "trigger"]
+  }
+]

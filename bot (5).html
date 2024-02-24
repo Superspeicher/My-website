@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ChatBot</title>
+    <link rel="stylesheet" href="botstyles.css">
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            height: 100vh;
+            margin: 0;
+            background-color: #f4f4f4;
+        }
+
+        #chat-container {
+            border: 1px solid #ccc;
+            padding: 20px;
+            max-width: 800px;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            margin-top: 20px; /*  top margins */
+        }
+
+        #send-button {
+            transition: opacity 0.5s ease;
+        }
+
+        #send-button[disabled] {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        #chat-log {
+            flex-grow: 1;
+            overflow-y: auto;
+            max-height: 300px;
+            width: 100%; /* width of chat log*/
+        }
+
+        #chat-log::-webkit-scrollbar {
+            width: 10px;
+        }
+
+        #chat-log::-webkit-scrollbar-thumb {
+            background-color: #888;
+            border-radius: 5px;
+        }
+
+        #chat-log div {
+            margin-bottom: 10px;
+        }
+
+        /* sender messages style */
+        #chat-log .user-message {
+            text-align: left;
+            color: blue; /* YOU plus input text is blue in colour */
+        }
+
+        /* Add style for bot messages */
+        #chat-log .bot-message {
+            text-align: left;
+            color: green; /* bot responses text is green in colour*/
+        }
+    </style>
+</head>
+<body>
+
+    <div id="chat-container">
+        <div id="chat-log"></div>
+        <form id="chat-form" onsubmit="sendMessage(); return false;">
+            <input type="text" id="user-input" placeholder="Ask me anything...But I'm stupid" oninput="enableSendButton()" autofocus>
+            <button type="submit" id="send-button" disabled>Send</button>
+        </form>
+        <div id="user-messages"></div>
+    </div>
+
+    <script>
+        // Load json data
+        let responseData;
+
+        // code to fetch bot.json file
+        fetch('bot.json')
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error(`HTTP error! Status: ${response.status}`);
+                }
+                return response.json();
+            })
+            .then(data => {
+                responseData = data;
+                console.log("Bot data loaded successfully:", responseData);
+            })
+            .catch(error => console.error('Error loading bot.json:', error));
+
+        function scrollToBottom() {
+            var chatLog = document.getElementById("chat-log");
+            chatLog.scrollTop = chatLog.scrollHeight;
+        }
+
+        function enableSendButton() {
+            const userInput = document.getElementById("user-input").value;
+            const sendButton = document.getElementById("send-button");
+            sendButton.disabled = userInput.trim() === '';
+        }
+
+        function getResponse(inputString) {
+            const splitMessage = inputString.toLowerCase().split(/\s+|[,;?!.-]\s*/);
+            const scores = {};
+
+            // this checks the responses
+            responseData.forEach(response => {
+                let responseScore = 0;
+                const requiredWords = response.required_words || [];
+
+                // this checks the user's word 
+                splitMessage.forEach(word => {
+                    // required words then add to the score
+                    if (requiredWords.includes(word)) {
+                        responseScore += 1;
+                    }
+                    // Word in the user_input then add to the score
+                    if (response.user_input.includes(word)) {
+                        responseScore += 1;
+                    }
+                });
+
+                // this stores the score for the response
+                scores[response.response_type] = (scores[response.response_type] || 0) + responseScore;
+            });
+
+            // this is to find the response type with the highest score
+            const bestResponseType = Object.keys(scores).reduce((a, b) => scores[a] > scores[b] ? a : b);
+
+            // this is to get a random response from the best response type
+            const bestResponses = responseData.filter(response => response.response_type === bestResponseType);
+            if (bestResponses.length > 0) {
+                const randomResponse = bestResponses[Math.floor(Math.random() * bestResponses.length)];
+                return randomResponse.bot_responses[Math.floor(Math.random() * randomResponse.bot_responses.length)];
+            }
+
+            console.log("No suitable response found.");
+            return "Oh dear, I'm sorry. I don't know how to respond. Please contact Gabriel at sukotjogabriel@yahoo.com.";
+        }
+
+        function appendToChatLog(sender, message) {
+            var chatLog = document.getElementById("chat-log");
+            var newMessage = document.createElement("div");
+
+            // this is to assign different classes for user and bot messages
+            newMessage.className = sender === "You" ? "user-message" : "bot-message";
+
+            newMessage.innerHTML = `<strong>${sender}:</strong> ${message}`;
+            chatLog.appendChild(newMessage);
+
+            // this is to automatically scroll to the bottom after appending a new message
+            scrollToBottom();
+        }
+
+        function appendToUserMessages(message) {
+            var userMessages = document.getElementById("user-messages");
+            var newUserMessage = document.createElement("div");
+            newUserMessage.innerHTML = message;
+            userMessages.appendChild(newUserMessage);
+
+            // scroll to the bottom 
+            userMessages.scrollTop = userMessages.scrollHeight;
+        }
+
+        function sendMessage() {
+            var sendButton = document.getElementById("send-button");
+
+            // disables the send button during the 2 second delay to look as if bot is thinking, its not "smiley face"
+            sendButton.disabled = true;
+
+            var userInput = document.getElementById("user-input").value;
+            appendToChatLog("You", userInput);
+
+            //  the 2-second delay before the bot responds
+            setTimeout(function () {
+                var botResponse = getResponse(userInput);
+                appendToChatLog("GAS 2.0", botResponse);
+
+                // then enables the send button after the response is generated, after the delay
+                sendButton.disabled = false;
+            }, 2000);
+
+            // clears the input field
+            document.getElementById("user-input").value = "";
+        }
+    </script>
+
+</body>
+</html>
