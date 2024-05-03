@@ -1,0 +1,658 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Gabriel's heart</title>
+<link rel="icon" type="image/png" href="heart.png">
+<style>
+
+@media (max-width: 600px) {
+  pre {
+    max-width: 80vw; 
+  }
+}
+
+
+  body {
+    background-color: black;
+    color: rgb(223, 187, 247);
+    font-family: monospace;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    margin: 0;
+    overflow: hidden;
+  }
+  pre {
+    margin: 0;
+    position: absolute;
+  }
+  #heart-animation {
+    position: relative;
+    top:-10%;
+    color:rgb(230, 31, 9);
+  }
+  #scrolling-text1 {
+    white-space: pre;
+    position: absolute;
+    right: 0;
+    top: 82%; 
+    transform: translateY(-50%);
+  }
+  #scrolling-text2 {
+    white-space: pre;
+    position: absolute;
+    right: 0;
+    top: 84%; 
+    transform: translateY(-50%);
+  }
+  #scrolling-text3 {
+    white-space: pre;
+    position: absolute;
+    right: 0;
+    top: 86%; 
+    transform: translateY(-50%);
+  }
+  #scrolling-text4 {
+    white-space: pre;
+    position: absolute;
+    right: 0;
+    top: 88%; 
+    transform: translateY(-50%);
+  }
+  #scrolling-text5 {
+    white-space: pre;
+    position: absolute;
+    right: 0;
+    top: 90%; 
+    transform: translateY(-50%);
+  }  
+
+
+
+  #scrolling-text6 { 
+    white-space: pre;
+    position: absolute;
+    right: 0;
+    top: 82%; 
+    transform: translateY(-50%);
+  }
+
+  #scrolling-text7 {
+    white-space: pre;
+    position: absolute;
+    right: 0;
+    top: 84%; 
+    transform: translateY(-50%);
+  }
+
+  #scrolling-text8 {
+    white-space: pre;
+    position: absolute;
+    right: 0;
+    top: 86%; 
+    transform: translateY(-50%);
+  }
+
+  #scrolling-text9 {
+    white-space: pre;
+    position: absolute;
+    right: 0;
+    top: 88%; 
+    transform: translateY(-50%);
+  }
+
+  #scrolling-textA {
+    white-space: pre;
+    position: absolute;
+    right: 0;
+    top: 90%; 
+    transform: translateY(-50%);
+
+    
+  }
+
+  #scrolling-textB {
+    white-space: pre;
+    position: absolute;
+    right: 0;
+    top: 74%; 
+    transform: translateY(-50%);
+
+    
+  }
+
+  #scrolling-textC {
+    white-space: pre;
+    position: absolute;
+    right: 0;
+    top: 76%; 
+    transform: translateY(-50%);
+
+    
+  }
+
+  #scrolling-textD {
+    white-space: pre;
+    position: absolute;
+    right: 0;
+    top: 78%; 
+    transform: translateY(-50%);
+
+    
+  }
+
+  #scrolling-textE {
+    white-space: pre;
+    position: absolute;
+    right: 0;
+    top: 80%; 
+    transform: translateY(-50%);
+
+    
+  }
+
+  #scrolling-textF {
+    white-space: pre;
+    position: absolute;
+    right: 0;
+    top: 82%; 
+    transform: translateY(-50%);
+
+    
+  }
+
+  #scrolling-textG {
+    white-space: pre;
+    position: absolute;
+    right: 0;
+    top: 84%; 
+    transform: translateY(-50%);
+
+    
+  }
+
+  #scrolling-textH {
+    white-space: pre;
+    position: absolute;
+    right: 0;
+    top: 86%; 
+    transform: translateY(-50%);
+
+    
+  }
+
+  #scrolling-textI {
+    white-space: pre;
+    position: absolute;
+    right: 0;
+    top: 88%; 
+    transform: translateY(-50%);
+
+    
+  }
+
+  #scrolling-textJ {
+    white-space: pre;
+    position: absolute;
+    right: 0;
+    top: 90%; 
+    transform: translateY(-50%);
+
+    
+  }
+
+  .pulsate {
+    animation: pulsate 0.5s infinite alternate; 
+  }
+  @keyframes pulsate {
+    from {
+      transform: scale(1);
+    }
+    to {
+      transform: scale(1.3);
+   
+    }
+  }
+  
+  .okayBye {
+    position: fixed;
+    top: 5%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 48px;
+    color: black; 
+    z-index: 9999;
+  }
+
+</style>
+</head>
+<body>
+  <div class="okayBye" id="okayBye">Okay byebye :) ~by gas</div>
+  <pre id="heart-animation"></pre>
+  <pre id="scrolling-text1">██     ██      ██    ██ ██████  ██    ██ ███████      ██    ██   ██████  ██    ██ </pre>
+  <pre id="scrolling-text2">██     ██      ██    ██ ██   ██ ██    ██ ██           ██    ██  ██    ██ ██    ██ </pre>
+  <pre id="scrolling-text3">██     ██      ██    ██ ██████  ██    ██ █████          ████    ██    ██ ██    ██ </pre>
+  <pre id="scrolling-text4">██     ██      ██    ██ ██   ██  ██  ██  ██              ██     ██    ██ ██    ██ </pre>
+  <pre id="scrolling-text5">██     ███████  ██████  ██   ██   ████   ███████         ██      ██████   ██████     ██ ██ ██ </pre>
+
+  <pre id="scrolling-text6"> ██████  █████  ███    ██     ██    ██  ██████  ██    ██     ██████  ███████     ███    ███ ██ ███    ██ ███████     ██████  </pre>
+  <pre id="scrolling-text7">██      ██   ██ ████   ██      ██  ██  ██    ██ ██    ██     ██   ██ ██          ████  ████ ██ ████   ██ ██               ██  </pre>
+  <pre id="scrolling-text8">██      ███████ ██ ██  ██       ████   ██    ██ ██    ██     ██████  █████       ██ ████ ██ ██ ██ ██  ██ █████         ▄███   </pre>
+  <pre id="scrolling-text9">██      ██   ██ ██  ██ ██        ██    ██    ██ ██    ██     ██   ██ ██          ██  ██  ██ ██ ██  ██ ██ ██            ▀▀    </pre>
+  <pre id="scrolling-textA">  █████ ██   ██ ██   ████        ██     ██████   ██████      ██████  ███████     ██      ██ ██ ██   ████ ███████       ██    </pre>
+
+  <pre id="scrolling-textB" class="pulsate">   █████████    █████████           █████████    █████████           █████████    █████████        </pre>
+  <pre id="scrolling-textC" class="pulsate">  ███████████  ███████████         ███████████  ███████████         ███████████  ███████████       </pre>
+  <pre id="scrolling-textD" class="pulsate"> ██████████████████████████       ██████████████████████████       ██████████████████████████      </pre>
+  <pre id="scrolling-textE" class="pulsate"> ██████████████████████████       ██████████████████████████       ██████████████████████████</pre>
+  <pre id="scrolling-textF" class="pulsate">  ████████████████████████         ████████████████████████         ████████████████████████       </pre>
+  <pre id="scrolling-textG" class="pulsate">   ██████████████████████           ██████████████████████           ██████████████████████        </pre>
+  <pre id="scrolling-textH" class="pulsate">      ████████████████                 ████████████████                 ████████████████           </pre>
+  <pre id="scrolling-textI" class="pulsate">        ████████████                     ████████████                     ████████████             </pre>
+  <pre id="scrolling-textJ" class="pulsate">           ██████                           ██████                           ██████                </pre>
+
+
+
+
+
+  <script>
+function generateHeartFrame(t) {
+    let heart = '';
+    let zb = new Array(50 * 20).fill(0.0); // Adjusted for smaller size
+    let maxz = 0;
+    let c = Math.cos(-t);
+    let s = Math.sin(-t);
+
+    for (let y = -0.5; y <= 0.5; y += 0.02) { // Adjusted step size
+        let r = 0.2 + 0.03 * Math.pow(0.5 + 0.5 * Math.sin(t * 6 + y * 2), 8); // Adjusted size
+        for (let x = -0.5; x <= 0.5; x += 0.02) { // Adjusted step size
+            let z = -x * x - Math.pow(0.6 * y - Math.abs(x) * 2 / 3, 2) + r * r; // Adjusted formula and size
+            if (z >= 0) {
+                z = Math.sqrt(z) / (2 - y);
+                for (let tz = -z; tz <= z; tz += z / 6) {
+                    let nx = x * c - tz * s;
+                    let nz = x * s + tz * c;
+                    let p = 1 + nz / 2;
+                    let vx = Math.round((nx * p + 0.5) * 40 + 5); // Adjusted scaling factor and offset
+                    let vy = Math.round((-y * p + 0.5) * 19 + 1); // Adjusted scaling factor and offset
+                    let idx = vx + vy * 50; // Adjusted for smaller size
+                    if (zb[idx] <= nz) {
+                        zb[idx] = nz;
+                        if (maxz < nz) {
+                            maxz = nz;
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    for (let i = 0; i < 50 * 20; i++) { // Adjusted for smaller size
+        heart += i % 50 ? " .,-~:;=!*#$@@"[Math.round(zb[i] / maxz * 13)] : "\n"; // Adjusted for smaller size
+        zb[i] = 0;
+    }
+
+    return heart;
+}
+
+
+
+    function animateHeart() {
+  let frameCount = 0;
+  setInterval(() => {
+    frameCount++;
+    if (frameCount > 3000) { 
+      frameCount = 0;
+    }
+    let t = frameCount * 0.004; // Increase for higher heart rate, but max at 0.004 otherwise my computer will crash
+    document.getElementById('heart-animation').textContent = generateHeartFrame(t);
+  }, 3); // best is 3 for smooth animation 
+}
+
+// TEXT FOR "I LURVE YOU, ROWS 1 TO 5"
+/* function animateScrollingText1() {
+    let scrollingText = document.getElementById('scrolling-text1');
+    let position = 100;
+
+    function moveText() {
+        position--;
+        scrollingText.style.left = position + '%';
+        if (position < -10000) {
+            position = 100;
+        }
+    }
+
+    setInterval(moveText, 20);
+}
+
+function animateScrollingText2() {
+    let scrollingText = document.getElementById('scrolling-text2');
+    let position = 50;
+
+    function moveText() {
+        position--;
+        scrollingText.style.left = position + '%';
+        if (position < -5000) {
+            position = 50;
+        }
+    }
+
+    setInterval(moveText, 20);
+}
+
+function animateScrollingText3() {
+    let scrollingText = document.getElementById('scrolling-text3');
+    let position = 50;
+
+    function moveText() {
+        position--;
+        scrollingText.style.left = position + '%';
+        if (position < -5000) {
+            position = 50;
+        }
+    }
+
+    setInterval(moveText, 20);
+}
+
+function animateScrollingText4() {
+    let scrollingText = document.getElementById('scrolling-text4');
+    let position = 50;
+
+    function moveText() {
+        position--;
+        scrollingText.style.left = position + '%';
+        if (position < -5000) {
+            position = 50;
+        }
+    }
+
+    setInterval(moveText, 20);
+}
+
+function animateScrollingText5() {
+    let scrollingText = document.getElementById('scrolling-text5');
+    let position = 50;
+
+    function moveText() {
+        position--;
+        scrollingText.style.left = position + '%';
+        if (position < -5000) {
+            position = 50;
+        }
+    }
+
+    setInterval(moveText, 20);
+}
+
+function animateScrollingText6() {
+    let scrollingText = document.getElementById('scrolling-text6');
+    let position = 150;
+
+    function moveText() {
+        position--;
+        scrollingText.style.left = position + '%';
+        if (position < -5000) {
+            position = 150;
+        }
+    }
+
+    setInterval(moveText, 20);
+}
+
+function animateScrollingText7() {
+    let scrollingText = document.getElementById('scrolling-text7');
+    let position = 150;
+
+    function moveText() {
+        position--;
+        scrollingText.style.left = position + '%';
+        if (position < -5000) {
+            position = 150;
+        }
+    }
+
+    setInterval(moveText, 20);
+}
+
+function animateScrollingText8() {
+    let scrollingText = document.getElementById('scrolling-text8');
+    let position = 150;
+
+    function moveText() {
+        position--;
+        scrollingText.style.left = position + '%';
+        if (position < -5000) {
+            position = 150;
+        }
+    }
+
+    setInterval(moveText, 20);
+}
+
+function animateScrollingText9() {
+    let scrollingText = document.getElementById('scrolling-text9');
+    let position = 150;
+
+    function moveText() {
+        position--;
+        scrollingText.style.left = position + '%';
+        if (position < -5000) {
+            position = 150;
+        }
+    }
+
+    setInterval(moveText, 20);
+}
+
+function animateScrollingTextA() {
+    let scrollingText = document.getElementById('scrolling-textA');
+    let position = 180;
+
+    function moveText() {
+        position--;
+        scrollingText.style.left = position + '%';
+        if (position < -10000) {
+            position = 280;
+        }
+    }
+
+    setInterval(moveText, 20);
+}
+
+function animateScrollingTextB() {
+    let scrollingText = document.getElementById('scrolling-textB');
+    let position = 260;
+    let scrollInterval;
+
+    function moveText() {
+        position--;
+        scrollingText.style.left = position + '%';
+        if (position < 32) {
+            clearInterval(scrollInterval);
+        }
+    }
+
+    scrollInterval = setInterval(moveText, 20);
+}
+
+function animateScrollingTextC() {
+    let scrollingText = document.getElementById('scrolling-textC');
+    let position = 260;
+    let scrollInterval;
+
+    function moveText() {
+        position--;
+        scrollingText.style.left = position + '%';
+        if (position < 32) {
+            clearInterval(scrollInterval);
+        }
+    }
+
+    scrollInterval = setInterval(moveText, 20);
+}
+
+function animateScrollingTextD() {
+    let scrollingText = document.getElementById('scrolling-textD');
+    let position = 260;
+    let scrollInterval;
+
+    function moveText() {
+        position--;
+        scrollingText.style.left = position + '%';
+        if (position < 32) {
+            clearInterval(scrollInterval);
+        }
+    }
+
+    scrollInterval = setInterval(moveText, 20);
+}
+
+function animateScrollingTextE() {
+    let scrollingText = document.getElementById('scrolling-textE');
+    let position = 260;
+    let scrollInterval;
+
+    function moveText() {
+        position--;
+        scrollingText.style.left = position + '%';
+        if (position < 32) {
+            clearInterval(scrollInterval);
+        }
+    }
+
+    scrollInterval = setInterval(moveText, 20);
+}
+
+function animateScrollingTextF() {
+    let scrollingText = document.getElementById('scrolling-textF');
+    let position = 260;
+    let scrollInterval;
+
+    function moveText() {
+        position--;
+        scrollingText.style.left = position + '%';
+        if (position < 32) {
+            clearInterval(scrollInterval);
+        }
+    }
+
+    scrollInterval = setInterval(moveText, 20);
+}
+
+function animateScrollingTextG() {
+    let scrollingText = document.getElementById('scrolling-textG');
+    let position = 260;
+    let scrollInterval;
+
+    function moveText() {
+        position--;
+        scrollingText.style.left = position + '%';
+        if (position < 32) {
+            clearInterval(scrollInterval);
+        }
+    }
+
+    scrollInterval = setInterval(moveText, 20);
+}
+
+function animateScrollingTextH() {
+    let scrollingText = document.getElementById('scrolling-textH');
+    let position = 260;
+    let scrollInterval;
+
+    function moveText() {
+        position--;
+        scrollingText.style.left = position + '%';
+        if (position < 32) {
+            clearInterval(scrollInterval);
+        }
+    }
+
+    scrollInterval = setInterval(moveText, 20);
+}
+
+function animateScrollingTextI() {
+    let scrollingText = document.getElementById('scrolling-textI');
+    let position = 260;
+    let scrollInterval;
+
+    function moveText() {
+        position--;
+        scrollingText.style.left = position + '%';
+        if (position < 32) {
+            clearInterval(scrollInterval);
+        }
+    }
+
+    scrollInterval = setInterval(moveText, 20);
+}
+
+function animateScrollingTextJ() {
+    let scrollingText = document.getElementById('scrolling-textJ');
+    let position = 260;
+    let scrollInterval;
+
+    function moveText() {
+        position--;
+        scrollingText.style.left = position + '%';
+        if (position < 32) {
+            clearInterval(scrollInterval);
+        }
+    }
+
+    scrollInterval = setInterval(moveText, 20);
+}  */
+
+
+    function changeToWhite() {
+  document.body.style.backgroundColor = "white"; // background white
+  document.body.style.color = "white"; // font become white
+  document.getElementById('heart-animation').style.color = "white"; // heart become white
+}
+
+
+    function closeTab() {
+      window.close();
+    }
+
+
+// CALL ANIMATE FUNCTIONS     
+    
+    animateHeart();
+    animateScrollingText1();
+    animateScrollingText2();
+    animateScrollingText3();
+    animateScrollingText4();
+    animateScrollingText5();
+
+    animateScrollingText6();
+    animateScrollingText7();
+    animateScrollingText8();
+    animateScrollingText9();
+    animateScrollingTextA();
+
+    animateScrollingTextB();
+    animateScrollingTextC();
+    animateScrollingTextD();
+    animateScrollingTextE();
+    animateScrollingTextF();
+    animateScrollingTextG();
+    animateScrollingTextH();
+    animateScrollingTextI();
+    animateScrollingTextJ();
+    setTimeout(changeToWhite, 9000);
+    setTimeout(closeTab, 11000);
+    
+    
+
+
+
+
+  </script>
+</body>
+</html>
