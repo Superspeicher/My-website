@@ -206,6 +206,51 @@
     
   }
 
+  #scrolling-text1A {
+    white-space: pre;
+    position: absolute;
+    right: 0;
+    top: 82%; 
+    transform: translateY(-50%);
+    color:rgb(113, 197, 245);
+  }
+
+  #scrolling-text2A {
+    white-space: pre;
+    position: absolute;
+    right: 0;
+    top: 84%; 
+    transform: translateY(-50%);
+    color:rgb(113, 197, 245);
+  }
+
+  #scrolling-text3A {
+    white-space: pre;
+    position: absolute;
+    right: 0;
+    top: 86%; 
+    transform: translateY(-50%);
+    color:rgb(113, 197, 245);
+  }
+
+  #scrolling-text4A {
+    white-space: pre;
+    position: absolute;
+    right: 0;
+    top: 88%; 
+    transform: translateY(-50%);
+    color:rgb(113, 197, 245);
+  }
+
+  #scrolling-text5A {
+    white-space: pre;
+    position: absolute;
+    right: 0;
+    top: 90%; 
+    transform: translateY(-50%);
+    color:rgb(113, 197, 245);
+  }
+      
   .pulsate {
     animation: pulsate 0.5s infinite alternate; 
   }
@@ -219,20 +264,12 @@
     }
   }
   
-  .okayBye {
-    position: fixed;
-    top: 5%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    font-size: 48px;
-    color: black; 
-    z-index: 9999;
-  }
+
 
 </style>
 </head>
 <body>
-  <div class="okayBye" id="okayBye">Okay byebye :) ~by gas </div>
+
   <pre id="heart-animation"></pre>
   <pre id="scrolling-text1">██     ██      ██    ██ ██████  ██    ██ ███████      ██    ██   ██████  ██    ██ </pre>
   <pre id="scrolling-text2">██     ██      ██    ██ ██   ██ ██    ██ ██           ██    ██  ██    ██ ██    ██ </pre>
@@ -256,7 +293,11 @@
   <pre id="scrolling-textI" class="pulsate">        ████████████                     ████████████                     ████████████             </pre>
   <pre id="scrolling-textJ" class="pulsate">           ██████                           ██████                           ██████                </pre>
 
-
+  <pre id="scrolling-text1A"> ██████  ██   ██  █████  ██    ██     ██████  ██    ██ ███████ ██████  ██    ██ ███████        ██ </pre>
+  <pre id="scrolling-text2A">██    ██ ██  ██  ██   ██  ██  ██      ██   ██  ██  ██  ██      ██   ██  ██  ██  ██          ██  ██</pre>
+  <pre id="scrolling-text3A">██    ██ █████   ███████   ████       ██████    ████   █████   ██████    ████   █████           ██ </pre>
+  <pre id="scrolling-text4A">██    ██ ██  ██  ██   ██    ██        ██   ██    ██    ██      ██   ██    ██    ██          ██  ██ </pre>
+  <pre id="scrolling-text5A"> ██████  ██   ██ ██   ██    ██        ██████     ██    ███████ ██████     ██    ███████        ██ </pre>
 
 
 
@@ -617,6 +658,82 @@
   scrollInterval = setInterval(moveText, 20);
     }
 
+ function animateScrollingText1A() {
+      let scrollingText = document.getElementById('scrolling-text1A');
+      let position = 900; 
+
+      function moveText() {
+        position--;
+        scrollingText.style.left = position + '%';
+        if (position < -10000) {
+          position = 900;
+        }
+      }
+
+      setInterval(moveText, 15); 
+    }
+
+    function animateScrollingText2A() {
+      let scrollingText = document.getElementById('scrolling-text2A');
+      let position = 900; 
+
+      function moveText() {
+        position--;
+        scrollingText.style.left = position + '%';
+        if (position < -10000) {
+          position = 900;
+        }
+      }
+
+      setInterval(moveText, 15); 
+    }
+
+    function animateScrollingText3A() {
+      let scrollingText = document.getElementById('scrolling-text3A');
+      let position = 900; 
+
+      function moveText() {
+        position--;
+        scrollingText.style.left = position + '%';
+        if (position < -10000) {
+          position = 900;
+        }
+      }
+
+      setInterval(moveText, 15); 
+    }
+
+    function animateScrollingText4A() {
+      let scrollingText = document.getElementById('scrolling-text4A');
+      let position = 900; 
+
+      function moveText() {
+        position--;
+        scrollingText.style.left = position + '%';
+        if (position < -10000) {
+          position = 900;
+        }
+      }
+
+      setInterval(moveText, 15); 
+    }
+
+    function animateScrollingText5A() {
+      let scrollingText = document.getElementById('scrolling-text5A');
+      let position = 900; 
+
+      function moveText() {
+        position--;
+        scrollingText.style.left = position + '%';
+        if (position < -10000) {
+          position = 900;
+        }
+      }
+
+      setInterval(moveText, 15); 
+    }
+
+        
     function changeToWhite() {
   document.body.style.backgroundColor = "white"; // background white
   document.body.style.color = "white"; // font become white
@@ -653,8 +770,18 @@
     animateScrollingTextH();
     animateScrollingTextI();
     animateScrollingTextJ();
-    setTimeout(changeToWhite, 9000);
-    setTimeout(closeTab, 11000);
+
+    animateScrollingText1A();
+    animateScrollingText2A();
+    animateScrollingText3A();
+    animateScrollingText4A();
+    animateScrollingText5A();
+
+        
+    setTimeout(changeToWhite, 17000);
+    setTimeout(stopAnimations, 17000);
+    setTimeout(closeTab, 18000);
+    
     
     
 
