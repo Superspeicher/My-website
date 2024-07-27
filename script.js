@@ -2,7 +2,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const primaryMedics = ["Laxshan", "Gio", "Leroy", "Vaniel", "Zul", "Danick", "Gabriel", "Sachin", "Jun Qiang", "Aqml", "Jaswanth", "Yuheng"];
     const additionalMedics = ["JCMC"];
     const blockOutDates = {};
-    const numDays = 31;  // Assuming the maximum number of days in a month
+    const numDays = 31;  // maximum number of days in month
     let selectedMonth = new Date().getMonth();
 
     const primaryMedicsContainer = document.getElementById("primaryMedicsContainer");
@@ -10,16 +10,16 @@ document.addEventListener("DOMContentLoaded", () => {
     const calendarContainer = document.getElementById("calendarContainer");
     const monthSelect = document.getElementById("monthSelect");
 
-    // Initialize month select dropdown
+    // initialize month select dropdown
     const months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
     monthSelect.innerHTML = months.map((month, index) => `<option value="${index}" ${index === selectedMonth ? 'selected' : ''}>${month}</option>`).join('');
 
-    // Generate medic boxes for primary group
+    // generate medic boxes for primary group
     primaryMedics.forEach(medic => {
         createMedicBox(medic, primaryMedicsContainer);
     });
 
-    // Generate single calendar for additional medics
+    // generate single calendar for additional medics
     const additionalMedicsBox = document.getElementById("additionalMedicsBox");
     const additionalMedicsDateInput = document.getElementById("additionalMedicsDateInput");
     flatpickr(additionalMedicsDateInput, {
@@ -29,7 +29,7 @@ document.addEventListener("DOMContentLoaded", () => {
         onChange: (selectedDates) => handleAdditionalMedicDateChange(selectedDates)
     });
 
-    // Handle month selection
+    // handle month selection
     monthSelect.addEventListener("change", (e) => {
         selectedMonth = parseInt(e.target.value, 10);
         updateCalendars();
@@ -134,7 +134,7 @@ document.addEventListener("DOMContentLoaded", () => {
             return !isBlocked && !isWeekend;
         });
 
-        // Randomly assign a medic to each available day
+        // randomly assign a medic to each available day, future updates to favour one person?
         availableDaysForDuty.forEach(day => {
             const randomMedic = primaryMedics[Math.floor(Math.random() * primaryMedics.length)];
             if (!assignments[day]) {
