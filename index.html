@@ -1,163 +1,46 @@
 <!DOCTYPE html>
-<html>
-    <head>
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>Gabriel's personal website</title>
-        <link rel="icon" type="image/x-icon" href="favicon.ico">
-        <style>
-        /*desktop */
-        .container {
-        width: 800px;
-        margin: 0 auto;
-        }
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Medic Duty Scheduler</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+</head>
+<body>
+    <h1>Medic Duty Scheduler</h1>
+    <a>By <a href="https://gabrielsukotjo.com/" target="_blank">Gabriel Sukotjo</a></p>
+    
+    <label for="monthSelect">Select Month:</label>
+    <select id="monthSelect">
+        <!-- Options will be added by JavaScript -->
+    </select>
 
-        /*mobile */
-     @media (max-width: 600px) {
-        .container {
-          width: 100%;
-         padding: 0 10px;
-        }
-        }
-        body {
-        font-family: sans-serif;
-        font-size: 15px;
-        position: relative;
-        
-        
-        }
-        header {
-            background-color: #3636d6;
-            color: #ffffff;
-            padding: 20px;
-            text-align: center;
-            border-radius: 7px;
-        
-            box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-            text-align: center;
-        
-      }
-      #profile-img {
-            float: right;
-            margin: 40px;
-            width: 300px;
-            height: 250px;
-            border-radius: 7px;
-        }
-      text {
-        position: relative;
-        top: 160px;
-        }
-      
-        text2 {
-       position :relative;
-       top:30px;
-      
-      }
-      text3 {
-        position :relative;
-        top: 150px;
-       left:0px;
-       
-      
-      }
-      text4 {
-        position :relative;
-        top: 210px;
-       left:0px;
-       width:10px
-       
-       
-      
-      }
-  
-      text5 {
-        position :relative;
-        top: 100px;
-       left:450px;
-       width:10px
-       
-       
-      
-      }
-      #profile-fire {
-        float: middle;
-        margin: 40px;
-        width: 300px;
-        height: 223px;
-        border-radius: 7px;
-      }
-    img:hover {
-        animation: shake 0.5s;
-        animation-iteration-count: infinite;
-    }
+    <h2>30 SCE MEDICS</h2>
+    <div id="primaryMedicsContainer">
+        <!-- Primary medic boxes will be added by JavaScript -->
+    </div>
 
-@keyframes shake {
-  0% { transform: translate(1px, 1px) rotate(0deg); }
-  5% { transform: translate(-1px, -2px) rotate(-1deg); }
-  10% { transform: translate(-3px, 0px) rotate(1deg); }
-  15% { transform: translate(3px, 2px) rotate(0deg); }
-  25% { transform: translate(1px, -1px) rotate(1deg); }
-  30% { transform: translate(-1px, 2px) rotate(-1deg); }
-  35% { transform: translate(-3px, 1px) rotate(0deg); }
-  40% { transform: translate(3px, 1px) rotate(-1deg); }
-  45% { transform: translate(-1px, -1px) rotate(1deg); }
-  50% { transform: translate(1px, 2px) rotate(0deg); }
-  55% { transform: translate(1px, -2px) rotate(-1deg); }
-  60% { transform: translate(-1px, -2px) rotate(-1deg); }
-  65% { transform: translate(-3px, 0px) rotate(1deg); }
-  70% { transform: translate(3px, 2px) rotate(0deg); }
-  75% { transform: translate(1px, -1px) rotate(1deg); }
-  80% { transform: translate(-1px, 2px) rotate(-1deg); }
-  85% { transform: translate(-3px, 1px) rotate(0deg); }
-  90% { transform: translate(3px, 1px) rotate(-1deg); }
-  95% { transform: translate(-1px, -1px) rotate(1deg); }
-  100% { transform: translate(1px, -2px) rotate(-1deg); }
-}
+    <h2>JCMC</h2>
+    <div id="additionalMedicsContainer">
+        <!-- Additional medic box with a single calendar will be added by JavaScript -->
+        <div id="additionalMedicsBox" class="medicBox">
+            Additional Medics
+            <input type="text" id="additionalMedicsDateInput" class="dateInput">
+        </div>
+    </div>
 
+    <button id="generateDuties" class ="button">Generate Duties</button>
+    <p style="font-style: italic;">Lazy is the way </p>
 
-img {
-        animation: spin 1s linear ;
-      }
+    <div id="calendarContainer">
+        <!-- Generated table will be displayed here -->
+    </div>
 
-      @keyframes spin {
-        0% {
-          transform: rotate(0deg);
-        }
-        100% {
-          transform: rotate(3600deg);
-        }
-      
-      }
-        </style>
-    </head>
-
-
-    <body>
-        <header>
-            <h1> Gabriel Sukotjo</h1>
-            <i>speed and thrill</i>
-            
-          </header>
-          <img id="profile-img" src="myphoto.png" alt="Your Profile Photo">
-          <p><b>About me:</b></p>
-          <p>My name is Gabriel Abraham Sukotjo, GAS.</p>
-          
-          
-
-
-        <img id="fire" img src="1f525.jpg" alt="fire pic" width="200" height="90" position :relative;
-        top:90px; >
-        <img id="fire" img src="1f525.jpg" alt="fire pic" width="200" height="90" position :relative;
-        top:90px;  >
-        <img id="fire" img src="1f525.jpg" alt="fire pic" width="200" height="90" position :relative;
-        top:90px;  >
-        <img id="fire" img src="1f525.jpg" alt="fire pic" width="200" height="90" position :relative;
-        top:90px;  >
-        <img id="fire" img src="1f525.jpg" alt="fire pic" width="200" height="90" position :relative;
-        top:90px;>
-
-
-        
-      
-    </body>
+    <script src="script.js"></script>
+</body>
 </html>

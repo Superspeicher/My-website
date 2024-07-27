@@ -1,130 +1,191 @@
-let move_speed = 10, grativy = 0.8;
-let bird = document.querySelector('.bird');
-let img = document.getElementById('bird-1');
-let sound_point = new Audio('sounds effect/point.mp3');
-let sound_die = new Audio('sounds effect/die.mp3');
+document.addEventListener("DOMContentLoaded", () => {
+    const primaryMedics = ["Laxshan", "Gio", "Leroy", "Vaniel", "Zul", "Danick", "Gabriel", "Sachin", "Jun Qiang", "Aqml", "Jaswanth", "Yuheng"];
+    const additionalMedics = ["JCMC"];
+    const blockOutDates = {};
+    const numDays = 31;  // Assuming the maximum number of days in a month
+    let selectedMonth = new Date().getMonth();
 
-// getting bird element properties
-let bird_props = bird.getBoundingClientRect();
+    const primaryMedicsContainer = document.getElementById("primaryMedicsContainer");
+    const additionalMedicsContainer = document.getElementById("additionalMedicsContainer");
+    const calendarContainer = document.getElementById("calendarContainer");
+    const monthSelect = document.getElementById("monthSelect");
 
-// This method returns DOMReact -> top, right, bottom, left, x, y, width and height
-let background = document.querySelector('.background').getBoundingClientRect();
+    // Initialize month select dropdown
+    const months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+    monthSelect.innerHTML = months.map((month, index) => `<option value="${index}" ${index === selectedMonth ? 'selected' : ''}>${month}</option>`).join('');
 
-let score_val = document.querySelector('.score_val');
-let message = document.querySelector('.message');
-let score_title = document.querySelector('.score_title');
+    // Generate medic boxes for primary group
+    primaryMedics.forEach(medic => {
+        createMedicBox(medic, primaryMedicsContainer);
+    });
 
-let game_state = 'Start';
-img.style.display = 'none';
-message.classList.add('messageStyle');
+    // Generate single calendar for additional medics
+    const additionalMedicsBox = document.getElementById("additionalMedicsBox");
+    const additionalMedicsDateInput = document.getElementById("additionalMedicsDateInput");
+    flatpickr(additionalMedicsDateInput, {
+        mode: "multiple",
+        dateFormat: "Y-m-d",
+        inline: true,
+        onChange: (selectedDates) => handleAdditionalMedicDateChange(selectedDates)
+    });
 
-document.addEventListener('keydown', (e) => {
-    // spacebar to fly bird
-    if(e.key == ' ' && game_state != 'Play'){
-        document.querySelectorAll('.pipe_sprite').forEach((e) => {
-            e.remove();
+    // Handle month selection
+    monthSelect.addEventListener("change", (e) => {
+        selectedMonth = parseInt(e.target.value, 10);
+        updateCalendars();
+    });
+
+    function createMedicBox(medic, container) {
+        const medicBox = document.createElement("div");
+        medicBox.classList.add("medicBox");
+        medicBox.textContent = medic;
+
+        const dateInput = document.createElement("input");
+        dateInput.type = "text";
+        dateInput.classList.add("dateInput");
+        medicBox.appendChild(dateInput);
+
+        container.appendChild(medicBox);
+
+        flatpickr(dateInput, {
+            mode: "multiple",
+            dateFormat: "Y-m-d",
+            inline: true,
+            onChange: (selectedDates) => handleDateChange(selectedDates, medic)
         });
-        img.style.display = 'block';
-        bird.style.top = '40vh';
-        game_state = 'Play';
-        message.innerHTML = '';
-        score_title.innerHTML = 'Score : ';
-        score_val.innerHTML = '0';
-        message.classList.remove('messageStyle');
-        play();
-    }
-});
 
-function play(){
-    function move(){
-        if(game_state != 'Play') return;
-
-        let pipe_sprite = document.querySelectorAll('.pipe_sprite');
-        pipe_sprite.forEach((element) => {
-            let pipe_sprite_props = element.getBoundingClientRect();
-            bird_props = bird.getBoundingClientRect();
-
-            if(pipe_sprite_props.right <= 0){
-                element.remove();
-            }else{
-                if(bird_props.left < pipe_sprite_props.left + pipe_sprite_props.width && bird_props.left + bird_props.width > pipe_sprite_props.left && bird_props.top < pipe_sprite_props.top + pipe_sprite_props.height && bird_props.top + bird_props.height > pipe_sprite_props.top){
-                    game_state = 'End';
-                    message.innerHTML = 'Game Over'.fontcolor('red') + '<br>Press spacebar To Restart';
-                    message.classList.add('messageStyle');
-                    img.style.display = 'none';
-                    sound_die.play();
-                    return;
-                }else{
-                    if(pipe_sprite_props.right < bird_props.left && pipe_sprite_props.right + move_speed >= bird_props.left && element.increase_score == '1'){
-                        score_val.innerHTML =+ score_val.innerHTML + 1;
-                        sound_point.play();
-                    }
-                    element.style.left = pipe_sprite_props.left - move_speed + 'px';
+        medicBox.addEventListener('mouseenter', () => {
+            medicBox.classList.add('active');
+        });
+        medicBox.addEventListener('mouseleave', () => {
+            setTimeout(() => {
+                if (!dateInput.matches(':hover') && !medicBox.matches(':hover')) {
+                    medicBox.classList.remove('active');
                 }
-            }
+            }, 100);
         });
-        requestAnimationFrame(move);
+        dateInput.addEventListener('mouseenter', () => {
+            medicBox.classList.add('active');
+        });
+        dateInput.addEventListener('mouseleave', () => {
+            setTimeout(() => {
+                if (!dateInput.matches(':hover') && !medicBox.matches(':hover')) {
+                    medicBox.classList.remove('active');
+                }
+            }, 100);
+        });
     }
-    requestAnimationFrame(move);
 
-    // bird descend function 
-    let bird_dy = 0;
-    function apply_gravity(){
-        if(game_state != 'Play') return;
-        bird_dy = bird_dy + grativy;
-        document.addEventListener('keydown', (e) => {
-            if(e.key == 'ArrowUp' || e.key == ' '){
-                img.src = 'images/Bird-2.png';
-                bird_dy = -7.6;
-            }
+    function updateCalendars() {
+        document.querySelectorAll(".dateInput").forEach(input => {
+            flatpickr(input, {
+                mode: "multiple",
+                dateFormat: "Y-m-d",
+                inline: true,
+                defaultDate: null //no default date
+            });
         });
-
-        document.addEventListener('keyup', (e) => {
-            if(e.key == 'ArrowUp' || e.key == ' '){
-                img.src = 'images/Bird.png';
-            }
-        });
-
-        if(bird_props.top <= 0 || bird_props.bottom >= background.bottom){
-            game_state = 'End';
-            message.style.left = '28vw';
-            window.location.reload();
-            message.classList.remove('messageStyle');
-            return;
+    }
+    
+    function handleDateChange(selectedDates, medic) {
+        if (!blockOutDates[medic]) {
+            blockOutDates[medic] = [];
         }
-        bird.style.top = bird_props.top + bird_dy + 'px';
-        bird_props = bird.getBoundingClientRect();
-        requestAnimationFrame(apply_gravity);
+
+        blockOutDates[medic] = selectedDates.map(date => {
+            const dateObj = new Date(date);
+            return dateObj.getDate();
+        });
     }
-    requestAnimationFrame(apply_gravity);
 
-    let pipe_seperation = 0;
+    function handleAdditionalMedicDateChange(selectedDates) {
+        additionalMedics.forEach(medic => {
+            if (!blockOutDates[medic]) {
+                blockOutDates[medic] = [];
+            }
 
-    let pipe_gap = 35;
+            blockOutDates[medic] = selectedDates.map(date => {
+                const dateObj = new Date(date);
+                return dateObj.getDate();
+            });
+        });
+    }
 
-    function create_pipe(){
-        if(game_state != 'Play') return;
+    document.getElementById("generateDuties").addEventListener("click", () => {
+        const assignments = generateDuties();
+        populateCalendarTable(assignments);
+    });
 
-        if(pipe_seperation > 55){
-            pipe_seperation = 0;
+    function isSaturday(day, month, year) {
+        const date = new Date(year, month, day);
+        return date.getDay() === 6; // 6 is Saturday
+    }
 
-            let pipe_posi = Math.floor(Math.random() * 43) + 8;
-            let pipe_sprite_inv = document.createElement('div');
-            pipe_sprite_inv.className = 'pipe_sprite';
-            pipe_sprite_inv.style.top = pipe_posi - 70 + 'vh';
-            pipe_sprite_inv.style.left = '100vw';
+    function generateDuties() {
+        const assignments = {};
+        const availableDays = Array.from({ length: numDays }, (_, i) => i + 1);
 
-            document.body.appendChild(pipe_sprite_inv);
-            let pipe_sprite = document.createElement('div');
-            pipe_sprite.className = 'pipe_sprite';
-            pipe_sprite.style.top = pipe_posi + pipe_gap + 'vh';
-            pipe_sprite.style.left = '100vw';
-            pipe_sprite.increase_score = '1';
+        // Remove blocked days and Saturdays
+        const blockedDays = Object.values(blockOutDates).flat();
+        const year = new Date().getFullYear();
+        const availableDaysForDuty = availableDays.filter(day => {
+            const isBlocked = blockedDays.includes(day);
+            const isWeekend = isSaturday(day, selectedMonth, year);
+            return !isBlocked && !isWeekend;
+        });
 
-            document.body.appendChild(pipe_sprite);
+        // Randomly assign a medic to each available day
+        availableDaysForDuty.forEach(day => {
+            const randomMedic = primaryMedics[Math.floor(Math.random() * primaryMedics.length)];
+            if (!assignments[day]) {
+                assignments[day] = {};
+            }
+
+            if (!isDateUnavailable(day, randomMedic)) {
+                assignments[day][randomMedic] = 'Duty';
+            }
+        });
+
+        return assignments;
+    }
+
+    function isDateUnavailable(day, medic) {
+        return (blockOutDates[medic] && blockOutDates[medic].includes(day));
+    }
+
+    function populateCalendarTable(assignments) {
+        const year = new Date().getFullYear();
+        const firstDay = new Date(year, selectedMonth, 1);
+        const lastDay = new Date(year, selectedMonth + 1, 0);
+        const daysInMonth = lastDay.getDate();
+
+        let tableHtml = `<table><thead><tr><th>Date</th><th>Day</th>`;
+        primaryMedics.forEach(medic => {
+            tableHtml += `<th>${medic}</th>`;
+        });
+        tableHtml += `</tr></thead><tbody>`;
+
+        for (let day = 1; day <= daysInMonth; day++) {
+            const currentDate = new Date(year, selectedMonth, day);
+            const dayOfWeek = currentDate.toLocaleDateString('en-US', { weekday: 'short' });
+            const isWeekend = (currentDate.getDay() === 0 || currentDate.getDay() === 6) ? 'weekend' : '';
+
+            tableHtml += `<tr class="${isWeekend}"><td>${day}</td><td>${dayOfWeek}</td>`;
+            primaryMedics.forEach(medic => {
+                let cellClass = '';
+                if (blockOutDates[medic] && blockOutDates[medic].includes(day)) {
+                    cellClass = 'blocked';
+                } else if (assignments[day] && assignments[day][medic] === 'Duty') {
+                    cellClass = 'duty';
+                }
+                tableHtml += `<td class="${cellClass}">${cellClass ? (cellClass === 'blocked' ? 'X' : 'Duty') : ''}</td>`;
+            });
+            tableHtml += `</tr>`;
         }
-        pipe_seperation++;
-        requestAnimationFrame(create_pipe);
+
+        tableHtml += `</tbody></table>`;
+        calendarContainer.innerHTML = tableHtml;
     }
-    requestAnimationFrame(create_pipe);
-}
+
+    updateCalendars();
+});
