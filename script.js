@@ -10,16 +10,16 @@ document.addEventListener("DOMContentLoaded", () => {
     const calendarContainer = document.getElementById("calendarContainer");
     const monthSelect = document.getElementById("monthSelect");
 
-    // initialize month select dropdown
+    // initialize month dropdown function
     const months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
     monthSelect.innerHTML = months.map((month, index) => `<option value="${index}" ${index === selectedMonth ? 'selected' : ''}>${month}</option>`).join('');
 
-    // generate medic boxes for primary group
+    // generate medic boxes 
     primaryMedics.forEach(medic => {
         createMedicBox(medic, primaryMedicsContainer);
     });
 
-    // generate single calendar for additional medics
+    // generate single calendar for jcmc medics
     const additionalMedicsBox = document.getElementById("additionalMedicsBox");
     const additionalMedicsDateInput = document.getElementById("additionalMedicsDateInput");
     flatpickr(additionalMedicsDateInput, {
@@ -86,7 +86,7 @@ document.addEventListener("DOMContentLoaded", () => {
             });
         });
     }
-    
+
     function handleDateChange(selectedDates, medic) {
         if (!blockOutDates[medic]) {
             blockOutDates[medic] = [];
@@ -125,7 +125,7 @@ document.addEventListener("DOMContentLoaded", () => {
         const assignments = {};
         const availableDays = Array.from({ length: numDays }, (_, i) => i + 1);
 
-        // Remove blocked days and Saturdays
+        // remove blocked days and Saturdays
         const blockedDays = Object.values(blockOutDates).flat();
         const year = new Date().getFullYear();
         const availableDaysForDuty = availableDays.filter(day => {
@@ -134,14 +134,11 @@ document.addEventListener("DOMContentLoaded", () => {
             return !isBlocked && !isWeekend;
         });
 
-        // randomly assign a medic to each available day, future updates to favour one person?
+        // randomly assign a medic to each available day
         availableDaysForDuty.forEach(day => {
             const randomMedic = primaryMedics[Math.floor(Math.random() * primaryMedics.length)];
-            if (!assignments[day]) {
+            if (!assignments[day] && !isDateUnavailable(day, randomMedic) && !hasConsecutiveDuties(assignments, day, randomMedic)) {
                 assignments[day] = {};
-            }
-
-            if (!isDateUnavailable(day, randomMedic)) {
                 assignments[day][randomMedic] = 'Duty';
             }
         });
@@ -151,6 +148,17 @@ document.addEventListener("DOMContentLoaded", () => {
 
     function isDateUnavailable(day, medic) {
         return (blockOutDates[medic] && blockOutDates[medic].includes(day));
+    }
+
+    function hasConsecutiveDuties(assignments, day, medic) {
+        // check if the medic has consecutive dutyies
+        const previousDay = assignments[day - 1];
+        const nextDay = assignments[day + 1];
+
+        if (previousDay && previousDay[medic] === 'Duty') return true;
+        if (nextDay && nextDay[medic] === 'Duty') return true;
+
+        return false;
     }
 
     function populateCalendarTable(assignments) {
